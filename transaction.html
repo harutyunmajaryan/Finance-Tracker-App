@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Transactions</title>
+    <link rel="stylesheet" href="transaction.css">
+    <script src = "transaction.js" defer></script>
+    <script src = "activity.js" defer></script>
+
+    
+</head>
+<body>
+
+    <div class="cosmos-bg"></div>
+
+    <div class="app-container">
+        
+        <nav class="nav-bar">
+            <a href="main_page.html" class="nav-link dashboard">Dashboard</a>
+            <a href="activity.html" class="nav-link activity">Activity</a>
+            <a href="transaction.html" class="nav-link transactions active">Transactions</a>
+            <a href="history.html" class="nav-link history">History</a>
+        </nav>
+
+        <div class="main-content">
+            
+            <aside class="sidebar">
+                <div class="info-card">
+                    <h2 class="info-title">1000+</h2>
+                    <p class="subinfo-text">Total users</p>
+                </div>
+                <div class="info-card">
+                    <h2 class="info-title">500+</h2>
+                    <p class="subinfo-text">Active users</p>
+                </div>
+                <div class="info-card">
+                    <h2 class="info-title">250+</h2>
+                    <p class="subinfo-text">New Users</p>
+                </div>
+                <div class="info-card">
+                    <h2 class="info-title">320+</h2>
+                    <p class="subinfo-text">Followers</p>
+                </div>
+            </aside>
+
+            <main class="dashboard-info">
+                
+                <div class="kpi-grid">
+                    <div class="balance-card">
+                        <span class="balance-label">Current Balance</span>
+                        <h3 class="balance-price" id = "transaction-balance-price">$0.00</h3>
+                    </div>
+                </div>
+
+                <div class="transactions-container">
+                    
+                    <div class="table-actions">
+                        <button class="btn-add-transaction" id = "add-transaction">+ Add Transaction</button>
+                        <div class="search-box">
+                            <input type="text" placeholder="Search transactions..." id="tx-search">
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="transaction-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Account Details</th>
+                                    <th>Reference</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-rows-transaction"></tbody>
+                           
+                        </table>
+                    </div>
+
+                </div> 
+
+            </main> 
+
+        </div>  
+    </div>
+
+</body>
+</html>
