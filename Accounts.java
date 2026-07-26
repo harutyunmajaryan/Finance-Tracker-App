@@ -1,54 +1,99 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
+public class Account {
+    private String accountNumber;
+    private String sortCode;
+    private String name;
 
-public class Accounts {
-    private String AccountNumber;
-    private String SortCode;
+    public static List<Account> valid_accounts = new ArrayList<>();
+    public static List<Account> verifiedList = new ArrayList<>();
 
-    public Accounts(String AccountNumber, String SortCode){
-        this.AccountNumber = AccountNumber;
-        this.SortCode = SortCode;
+    public Account(String accountNumber, String sortCode, String name){
+        this.accountNumber = accountNumber;
+        this.sortCode = sortCode;
+        this.name = name;
     }
 
     public String getAccountNumber(){
-        return AccountNumber;
-    }
-    public String getSortCode(){
-        return SortCode;
+        return accountNumber;
     }
 
-    public void setAccountNumber(String AccountNumber){
-        this.AccountNumber = AccountNumber;
+    public String getSortCode(){
+        return sortCode;
     }
-    public void setSortCode(String SortCode){
-        this.SortCode = SortCode;
+
+    public String getName(){
+        return name;
     }
+
     @Override
     public String toString(){
-        return "[" + AccountNumber + ", " + SortCode + "]";
+        return "Account Number: " + accountNumber + ", Sort-Code: " + sortCode + ", Name: " + name;
     }
-
 
     public static void main(String[] args){
-        List<Accounts> accounts = new ArrayList<>();
-        Accounts account1 = new Accounts("78356690","234467");
-        Accounts account2 = new Accounts("89990023","567899");
-        Accounts account3 = new Accounts("34215907","990076");
-        
-
-        accounts.add(account1);
-        accounts.add(account2);
-        accounts.add(account3);
-
-
-        System.out.println("Available Accounts: " + AccountValidation(accounts));
+        System.out.println("All Available and Valid Accounts: ");
+        System.out.println();
+        AccountList();
     }
 
-    public static List<Accounts> AccountValidation(List<Accounts> accounts){
-        
-        accounts.removeIf(acc -> acc.getAccountNumber().length() != 8 || acc.getSortCode().length() != 6);
-        return accounts;
+    public static void AccountList(){
+        Account account1 = new Account("90345688", "232111", "John McTomminay");
+        Account account2 = new Account("78900312","447889","Lily Adams");
+        Account account3 = new Account("39867291","556790","Mery Kendall");
+        Account account4 = new Account("35283572","339874","Daisy Jenner");
+        Account account5 = new Account("221152", "553821","Lilit Manukyan");
+        Account account6 = new Account("9023785A","237899","Harry Maguire");
+
+        List<Account> account_array = new ArrayList<>();
+        account_array.add(account1);
+        account_array.add(account2);
+        account_array.add(account3);
+        account_array.add(account4);
+        account_array.add(account5);
+        account_array.add(account6);
+
+        valid_accounts = new ArrayList<>();
+
+        for (Account account : account_array){
+            if (account.getAccountNumber().length() == 8 && account.getSortCode().length() == 6){
+                valid_accounts.add(account);
+            }
+        }
+
+        List<Account> strictly_valid = AccountValidation2(valid_accounts);
+        for (Account account : strictly_valid){
+            System.out.println(account);
+        }
     }
-    
+
+    public static List<Account> AccountValidation2(List<Account> array){
+        verifiedList = new ArrayList<>();
+
+        for (Account account : array){
+            boolean isValid = true;
+
+            for (int i = 0; i < account.getAccountNumber().length(); i++){
+                if (!Character.isDigit(account.getAccountNumber().charAt(i))){
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if (isValid) {
+                for (int i = 0; i < account.getSortCode().length(); i++){
+                    if(!Character.isDigit(account.getSortCode().charAt(i))){
+                        isValid = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isValid) {
+                verifiedList.add(account);
+            }
+        }
+        return verifiedList;
+    }
 }
